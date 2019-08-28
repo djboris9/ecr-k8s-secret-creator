@@ -132,8 +132,9 @@ func (k *kubernetesAPI) applyDockerCfgSecret(cfg []byte, secretName, namespace s
 			Name: secretName,
 		},
 		Data: map[string][]byte{
-			"config.json": cfg,
+			".dockerconfigjson": cfg,
 		},
+		Type: "kubernetes.io/dockerconfigjson",
 	}
 
 	log.Infoln("creating kubernetes secret")
